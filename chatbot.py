@@ -15,15 +15,12 @@ def generate(instruction, knowledge, dialog):
     return output
 
 class GoDel:
-    def __init__(self,user_message = "Hi!"):
-        self.user_message = user_message
-    def usr_response(self, user_message = "Hi!"):
+    def __init__(self, dialog):
+        self.chatlist = dialog
+    def usr_response(self, dialog = ["Hi", '']):
         # Instruction for a chitchat task
         instruction = f'Instruction: given a dialog context, you need to response empathically.'
         # Leave the knowldge empty
         knowledge = ''
-        dialog = [
-            user_message
-        ]
-        response = generate(instruction, knowledge, dialog)
-        return response
+        response = generate(instruction, knowledge, dialog[0])
+        return [dialog[0], response]
