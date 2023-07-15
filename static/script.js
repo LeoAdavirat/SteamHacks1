@@ -55,12 +55,54 @@ const handleChat = () => {
     // Append the user's message to the chatbox
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
+    const jsonfile = [userMessage,""]
+    console.log(userMessage)
+    // <strong>// Get the reciever endpoint from Python using fetch</strong>:
+    fetch("http://127.0.0.1:8000/receiver", 
+        {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+        // <strong>// Strigify the payload into JSON</strong>:
+        body:JSON.stringify(jsonfile)}).then(res=>{
+                if(res.ok){
+                    return res.json()
+                }else{
+                    alert("something is wrong")
+                }
+            }).then(jsonResponse=>{console.log(jsonResponse)} 
+            ).catch((err) => console.error(err));
+            
+    fetch("http://127.0.0.1:8000/return", {method:'GET'})
     
     setTimeout(() => {
         // Display "Thinking..." message while waiting for the response
         const incomingChatLi = createChatLi("Thinking...", "incoming");
         chatbox.appendChild(incomingChatLi);
         chatbox.scrollTo(0, chatbox.scrollHeight);
+        //
+        // fetch("http://127.0.0.1:8000/receiver", 
+        // {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        // body:JSON.stringify(jsonfile)}).then(res=>{
+        //         if(res.ok){
+        //             return res.json()
+        //         }else{
+        //             alert("something is wrong")
+        //         }
+        //     }).then(jsonResponse=>{
+                
+        //         // Log the response data in the console
+        //         console.log(jsonResponse)
+        //     } 
+        //     ).catch((err) => console.error(err));
+        //
         generateResponse(incomingChatLi);
     }, 600);
 }
