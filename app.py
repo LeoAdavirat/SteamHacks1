@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 # from flask_cors import CORS
 from dashboard import dashboard
+from chatbot import GoDel
 
 app = Flask(__name__)
 # cors = CORS(app)
@@ -15,6 +16,8 @@ def postME():
     data = jsonify(data)
     datajson = data.json
     return data.json
+
+GoDelchatbot = GoDel()
 
 @app.route("/return", methods =["GET"])
 def getJSON():

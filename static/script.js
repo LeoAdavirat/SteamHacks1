@@ -74,8 +74,10 @@ const handleChat = () => {
                 }
             }).then(jsonResponse=>{console.log(jsonResponse)} 
             ).catch((err) => console.error(err));
-            
-    fetch("http://127.0.0.1:8000/return", {method:'GET'})
+
+    fetch("http://127.0.0.1:8000/return").then(bot_response => {
+        
+    })
     
     setTimeout(() => {
         // Display "Thinking..." message while waiting for the response
