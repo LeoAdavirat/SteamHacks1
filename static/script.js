@@ -19,29 +19,36 @@ const createChatLi = (message, className) => {
 }
 
 const generateResponse = (chatElement) => {
-    const API_URL = "https://api.openai.com/v1/chat/completions";
+    // const API_URL = "https://api.openai.com/v1/chat/completions";
     const messageElement = chatElement.querySelector("p");
 
-    // Define the properties and message for the API request
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: userMessage}],
-        })
-    }
+    // // Define the properties and message for the API request
+    // const requestOptions = {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": `Bearer ${API_KEY}`
+    //     },
+    //     body: JSON.stringify({
+    //         model: "gpt-3.5-turbo",
+    //         messages: [{role: "user", content: userMessage}],
+    //     })
+    // }
+    // const waitforit = await fetch("http://127.0.0.1:8000/receiver");
+    fetch('http://127.0.0.1:8000/return').then((res)=>{
+        return res.text();
+      }).then((text)=>{
+       console.log(text);
+       messageElement.textContent = text;
+      })
 
     // Send POST request to API, get response and set the reponse as paragraph text
-    fetch(API_URL, requestOptions).then(res => res.json()).then(data => {
-        messageElement.textContent = data.choices[0].message.content.trim();
-    }).catch(() => {
-        messageElement.classList.add("error");
-        messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
+    // fetch(API_URL, requestOptions).then(res => res.json()).then(data => {
+    //     messageElement.textContent = data.choices[0].message.content.trim();
+    // }).catch(() => {
+    //     messageElement.classList.add("error");
+    //     messageElement.textContent = "Oops! Something went wrong. Please try again.";
+    // }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
 }
 
 const handleChat = () => {
@@ -56,7 +63,6 @@ const handleChat = () => {
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
     const jsonfile = [userMessage,""]
-    console.log(userMessage)
     // <strong>// Get the reciever endpoint from Python using fetch</strong>:
     fetch("http://127.0.0.1:8000/receiver", 
         {
@@ -75,9 +81,7 @@ const handleChat = () => {
             }).then(jsonResponse=>{console.log(jsonResponse)} 
             ).catch((err) => console.error(err));
 
-    fetch("http://127.0.0.1:8000/return").then(bot_response => {
-        
-    })
+    
     
     setTimeout(() => {
         // Display "Thinking..." message while waiting for the response

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 # from flask_cors import CORS
 from dashboard import dashboard
-from chatbot import GoDel
+from chatbot import DialoGPT
 
 app = Flask(__name__)
 # cors = CORS(app)
@@ -17,12 +17,13 @@ def postME():
     datajson = data.json
     return data.json
 
-GoDelchatbot = GoDel()
 
 @app.route("/return", methods =["GET"])
 def getJSON():
     global datajson
-    return datajson
+    datajson = DialoGPT.user_generate(datajson)
+    print(datajson[1])
+    return datajson[1]
 
 if __name__== '__main__':
     app.run(debug=True,port = 8000)

@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, jsonify, redirect, url_fo
 dashboard = Blueprint(__name__,"dashboard")
 @dashboard.route("/")
 def home():
-    return render_template("dashboard.html", name = "Leo")
+    return render_template("index.html")
 
 @dashboard.route("/profile")
 def profile():
@@ -11,7 +11,7 @@ def profile():
 
 @dashboard.route("/chatbot")
 def chatbot():
-    return render_template("index.html")
+    return render_template("chatbot.html")
 
 # @dashboard.route("/json")
 # def get_json():
