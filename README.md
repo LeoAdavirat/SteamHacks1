@@ -1,6 +1,8 @@
 Hello!
 Đây là bài dự thi của Đào Hiếu Trung gửi tới cuộc thi STEAMHacks
 
+Video dự thi: https://drive.google.com/file/d/1nRSsjaWIorN2cjlX5K8iXaFkJXBSSLM2/view?usp=drivesdk
+
 Bước 1: Bạn hãy tải file zip về, giải nén và cài thư viện yêu cầu như sau
 
 
