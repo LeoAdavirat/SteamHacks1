@@ -1,5 +1,5 @@
 Hello!
-Đây là bài dự thi của Đào Hiếu Trung trong cuộc thi SteamHacks
+Đây là bài dự thi của Đào Hiếu Trung trong cuộc thi STEAMHacks
 
 Bước 1: Bạn hãy tải file zip về, giải nén và cài thư viện yêu cầu như sau
 
